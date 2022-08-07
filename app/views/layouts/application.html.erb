@@ -11,6 +11,17 @@
   </head>
 
   <body>
+    <% if end_user_signed_in? %>
+      <%= link_to "home", public_coffees_path %>
+
+      <%= link_to "プロフィール",  public_end_user_path(current_end_user) %>
+
+      <%= link_to "投稿する" , new_public_coffee_path %>
+
+      <%= link_to "コーヒーの時間とは？", public_homes_about_path %>
+
+      <%= link_to "ログアウト", destroy_end_user_session_path, method: :delete %>
+    <% end %>
     <%= yield %>
   </body>
 </html>

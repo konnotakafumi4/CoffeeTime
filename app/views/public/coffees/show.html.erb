@@ -1,2 +1,5 @@
-<h1>Public::Coffee#show</h1>
-<p>Find me in app/views/public/coffee/show.html.erb</p>
+<h1>投稿詳細</h1>
+<%= image_tag @coffee.end_user.get_profile_image(100,100) %>
+<%= @coffee.end_user.name %>
+<%= image_tag @coffee.get_profile_image(100,100) %>
+<%= @coffee.text %>

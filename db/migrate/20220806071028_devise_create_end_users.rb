@@ -3,6 +3,10 @@
 class DeviseCreateEndUsers < ActiveRecord::Migration[6.1]
   def change
     create_table :end_users do |t|
+
+      t.string :name
+      t.text :introduction
+
       ## Database authenticatable
       t.string :email,              null: false, default: ""
       t.string :encrypted_password, null: false, default: ""

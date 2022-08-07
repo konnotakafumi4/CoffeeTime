@@ -1,14 +1,11 @@
-<%= link_to "home", public_end_users_path %>
-
-<%= link_to "プロフィール",  public_end_user_path(current_end_user) %>
-
-<%= link_to "投稿する" , new_public_coffee_path %>
-
-<%= link_to "コーヒーの時間とは？", public_homes_about_path %>
-
-<%= link_to "ログアウト", destroy_end_user_session_path, method: :delete %>
-
+<h1>投稿一覧</h1>
 <% @coffees.each do |coffee| %>
-  <%= coffee.image %>
-  <%= coffee.text %>
+  <%= link_to public_end_user_path(coffee.end_user) do %>
+    <%= image_tag coffee.end_user.get_profile_image(100,100) %>
+    <%= coffee.end_user.name %>
+  <% end %>
+  <%= link_to public_coffee_path(coffee) do %>
+    <%= image_tag coffee.get_profile_image(100,100) %>
+    <%= coffee.text %>
+  <% end %>
 <% end %>

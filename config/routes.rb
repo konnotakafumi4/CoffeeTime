@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   namespace :public do
     get 'homes/top'
     get 'homes/about'
-    resources :end_users, only: [:index, :show, :edit]
+    resources :end_users, only: [:index, :show, :edit, :update]
     resources :coffees, only: [:new, :index, :show, :create]
     resources :favorites, only: [:index]
   end
