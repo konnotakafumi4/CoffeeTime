@@ -1,0 +1,7 @@
+<%= form_with model: @coffee, url: public_coffees_path, method: :post do |f| %>
+  <%= f.label :image, "画像" %>
+  <%= f.file_field :image, accept: "image/*", class:"form-control-file" %>
+  <%= f.label :text %>
+  <%= f.text_area :text, class: 'form-control coffee_text' %>
+  <%= f.submit "投稿", class:"btn btn-success btn-block" %>
+<% end %>
