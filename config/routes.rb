@@ -4,9 +4,11 @@ Rails.application.routes.draw do
     get 'homes/top'
     get 'homes/about'
     resources :end_users, only: [:index, :show, :edit]
-    resources :coffees, only: [:new, :index, :show]
+    resources :coffees, only: [:new, :index, :show, :create]
     resources :favorites, only: [:index]
   end
+
+  root to: "public/homes#top"
 
   devise_for :end_user, skip: [:passwords], controllers: {
     registrations: "public/registrations",
