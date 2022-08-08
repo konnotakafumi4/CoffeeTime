@@ -3,3 +3,30 @@
 <%= @coffee.end_user.name %>
 <%= image_tag @coffee.get_profile_image(100,100) %>
 <%= @coffee.text %>
+<% if @coffee.favorited_by?(current_end_user) %>
+    <%= link_to public_coffee_favorites_path(@coffee), method: :delete do %>
+      <i class="fas fa-heart"></i>
+        <%= @coffee.favorites.count %>
+    <% end %>
+  <% else %>
+    <%= link_to public_coffee_favorites_path(@coffee), method: :post do %>
+      <i class="far fa-heart"></i>
+        <%= @coffee.favorites.count %>
+    <% end %>
+  <% end %>
+
+<% if @coffee.end_user == current_end_user %>
+  <%= link_to "編集", edit_public_coffee_path(@coffee) %>
+  <%= link_to "削除", public_coffee_path(@coffee), method: :delete %>
+<% end %>
+
+<%= form_with model: @coffee_comment, url: public_coffee_coffee_comment_path(@coffee), method: :post do |f| %>
+  <%= f.text_area :comment, size: "40x5" %>
+  <%= f.submit '送信', class: "btn-sm btn-primary" %>
+<% end %>
+
+<% @comments.each do |comment| %>
+  <%= comment.end_user.name %>
+  <%= comment.comment %>
+  <%= link_to "削除", public_coffee_comment_path(comment), method: :delete %>
+<% end %>

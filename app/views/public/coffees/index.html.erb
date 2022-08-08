@@ -4,8 +4,21 @@
     <%= image_tag coffee.end_user.get_profile_image(100,100) %>
     <%= coffee.end_user.name %>
   <% end %>
+
   <%= link_to public_coffee_path(coffee) do %>
     <%= image_tag coffee.get_profile_image(100,100) %>
     <%= coffee.text %>
+  <% end %>
+
+  <% if coffee.favorited_by?(current_end_user) %>
+    <%= link_to public_coffee_favorites_path(coffee), method: :delete do %>
+      <i class="fas fa-heart"></i>
+        <%= coffee.favorites.count %>
+    <% end %>
+  <% else %>
+    <%= link_to public_coffee_favorites_path(coffee), method: :post do %>
+      <i class="far fa-heart"></i>
+        <%= coffee.favorites.count %>
+    <% end %>
   <% end %>
 <% end %>

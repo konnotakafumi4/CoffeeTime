@@ -1,0 +1,9 @@
+<h1>投稿編集</h1>
+<%= form_with model: @coffee, url: public_coffee_path, method: :patch do |f| %>
+  <%= f.file_field :image, class: "form-control-file user_image", accept: 'image/*' %>
+
+  <%= f.label :text %>
+  <%= f.text_area :text, class: 'form-control book_body' %>
+
+  <%= f.submit '編集', class: 'btn btn-success' %>
+<% end %>

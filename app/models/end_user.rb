@@ -5,6 +5,8 @@ class EndUser < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :coffees
+  has_many :favorites, dependent: :destroy
+  has_many :coffee_comments, dependent: :destroy
   has_one_attached :end_user_image
 
   def get_profile_image(width, height)

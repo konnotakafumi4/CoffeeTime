@@ -1,11 +1,13 @@
 Rails.application.routes.draw do
-
   namespace :public do
     get 'homes/top'
     get 'homes/about'
     resources :end_users, only: [:index, :show, :edit, :update]
-    resources :coffees, only: [:new, :index, :show, :create]
-    resources :favorites, only: [:index]
+    resources :coffees, only: [:new, :index, :show, :create, :edit, :update, :destroy] do
+      resource :favorites, only: [:create, :destroy]
+      resource :coffee_comment, only: [:create]
+    end
+    resources :coffee_comments, only: [:destroy]
   end
 
   root to: "public/homes#top"

@@ -3,7 +3,7 @@ class Public::EndUsersController < ApplicationController
   end
 
   def show
-    @end_user = current_end_user
+    @end_user = EndUser.find(params[:id])
   end
 
   def edit
@@ -11,9 +11,9 @@ class Public::EndUsersController < ApplicationController
   end
 
   def update
-  end_user = EndUser.find(params[:id])
-  end_user.update(end_user_params)
-  redirect_to public_end_user_path
+    end_user = EndUser.find(params[:id])
+    end_user.update(end_user_params)
+    redirect_to public_end_user_path
   end
 
   private
