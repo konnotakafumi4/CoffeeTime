@@ -6,22 +6,40 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <% if end_user_signed_in? %>
-      <%= link_to "home", public_coffees_path %>
+    <div class="container">
+      <div class="wapper d-flex flex-wrap">
+        <% if end_user_signed_in? %>
+          <%= render 'layouts/serach' %>
 
-      <%= link_to "プロフィール",  public_end_user_path(current_end_user) %>
+          <div class="side_menu w-25">
+            <ul class="list-group">
+              <li class="list-group-item border-0">
+                <%= link_to "home", public_coffees_path %>
+              </li>
+              <li class="list-group-item border-0">
+                <%= link_to "プロフィール",  public_end_user_path(current_end_user) %>
+              </li>
+              <li class="list-group-item border-0">
+                <%= link_to "投稿する" , new_public_coffee_path %>
+              </li>
+              <li class="list-group-item border-0">
+                <%= link_to "コーヒーの時間とは？", public_homes_about_path %>
+              </li>
+              <li class="list-group-item border-0">
+                <%= link_to "ログアウト", destroy_end_user_session_path, method: :delete %>
+              </li>
+          </div>
+        <% end %>
+        <div class="main_content w-75">
+          <%= yield %>
 
-      <%= link_to "投稿する" , new_public_coffee_path %>
-
-      <%= link_to "コーヒーの時間とは？", public_homes_about_path %>
-
-      <%= link_to "ログアウト", destroy_end_user_session_path, method: :delete %>
-    <% end %>
-    <%= yield %>
+        </div>
+      </div>
+    </div>
   </body>
 </html>

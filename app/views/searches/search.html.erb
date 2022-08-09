@@ -1,0 +1,23 @@
+<h2>Results index</h2>
+
+<table class="table table-hover table-inverse">
+  <!--検索対象モデルがUserの時 -->
+  <% if @range == "EndUser" %>
+    <tbody>
+      <% @end_users.each do |end_user| %>
+        <tr>
+          <td><%= end_user.name %></td>
+          <%= end_user.introduction %>
+        </tr>
+      <% end %>
+    </tbody>
+  <% else %>
+    <!--検索対象モデルがUserではない時(= 検索対象モデルがBookの時) -->
+    <tbody>
+      <% @coffees.each do |coffee| %>
+        <tr>
+          <td><%= image_tag coffee.get_profile_image(100,100) %></td>
+          <td><%= coffee.text %></td>
+        </tr>
+      <% end %>
+  <% end %>

@@ -28,5 +28,7 @@
 <% @comments.each do |comment| %>
   <%= comment.end_user.name %>
   <%= comment.comment %>
-  <%= link_to "削除", public_coffee_comment_path(comment), method: :delete %>
+  <% if comment.end_user == current_end_user %>
+    <%= link_to "削除", public_coffee_comment_path(comment), method: :delete %>
+  <% end %>
 <% end %>

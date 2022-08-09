@@ -17,4 +17,8 @@ class Coffee < ApplicationRecord
   def favorited_by?(end_user)
      favorites.exists?(end_user_id: end_user.id)
   end
+
+  def self.looks(word)
+    @coffee = Coffee.where("text LIKE?","%#{word}%")
+  end
 end
