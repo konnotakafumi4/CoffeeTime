@@ -8,15 +8,17 @@
 
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
   </head>
 
   <body>
     <div class="container">
+
       <div class="wapper d-flex flex-wrap">
         <% if end_user_signed_in? %>
           <%= render 'layouts/serach' %>
 
-          <div class="side_menu w-25">
+          <div class="side_menu w-25 fixed-top">
             <ul class="list-group">
               <li class="list-group-item border-0">
                 <%= link_to "home", public_coffees_path %>
@@ -35,6 +37,7 @@
               </li>
           </div>
         <% end %>
+        <div class="w-25"></div>
         <div class="main_content w-75">
           <%= yield %>
 
