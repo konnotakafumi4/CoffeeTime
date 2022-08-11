@@ -20,15 +20,12 @@
   <%= link_to "削除", public_coffee_path(@coffee), method: :delete %>
 <% end %>
 
-<%= form_with model: @coffee_comment, url: public_coffee_coffee_comment_path(@coffee), method: :post do |f| %>
+<%= form_with model: @coffee_comment, url: public_coffee_coffee_comment_path(@coffee), method: :post, local: false do |f| %>
   <%= f.text_area :comment, size: "40x5" %>
   <%= f.submit '送信', class: "btn-sm btn-primary" %>
 <% end %>
 
-<% @comments.each do |comment| %>
-  <%= comment.end_user.name %>
-  <%= comment.comment %>
-  <% if comment.end_user == current_end_user %>
-    <%= link_to "削除", public_coffee_comment_path(comment), method: :delete %>
-  <% end %>
-<% end %>
+<div class="comments-area">
+  <%= render "public/coffee_comments/comment", comments: @comments %>
+</div>
+
