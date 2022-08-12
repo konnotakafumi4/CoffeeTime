@@ -16,10 +16,9 @@
 
       <div class="wapper d-flex flex-wrap">
         <% if end_user_signed_in? %>
-          <%= render 'layouts/serach' %>
-
+            <%= render 'layouts/serach' %>
           <div class="side_menu w-25 fixed-top">
-            <ul class="list-group">
+            <ul class="list-group vh-100">
               <li class="list-group-item border-0">
                 <%= link_to "home", public_coffees_path %>
               </li>

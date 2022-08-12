@@ -1,27 +1,27 @@
 <h1>投稿詳細</h1>
-<%= image_tag @coffee.end_user.get_profile_image(100,100) %>
-<%= @coffee.end_user.name %>
-<%= image_tag @coffee.get_profile_image(100,100) %>
-<%= @coffee.text %>
-<% if @coffee.favorited_by?(current_end_user) %>
-    <%= link_to public_coffee_favorites_path(@coffee), method: :delete do %>
-      <i class="fas fa-heart"></i>
-        <%= @coffee.favorites.count %>
-    <% end %>
-  <% else %>
-    <%= link_to public_coffee_favorites_path(@coffee), method: :post do %>
-      <i class="far fa-heart"></i>
-        <%= @coffee.favorites.count %>
-    <% end %>
+<div class="first-infoemation">
+  <%= link_to public_end_user_path(@coffee.end_user) do %>
+    <%= image_tag @coffee.end_user.get_profile_image(100,100) %>
+    <%= @coffee.end_user.name %>
   <% end %>
+</div>
+<div class="btn">
+  <% if @coffee.end_user == current_end_user %>
+      <%= link_to "編集", edit_public_coffee_path(@coffee) %>
+      <%= link_to "削除", public_coffee_path(@coffee), method: :delete %>
+  <% end %>
+</div>
 
-<% if @coffee.end_user == current_end_user %>
-  <%= link_to "編集", edit_public_coffee_path(@coffee) %>
-  <%= link_to "削除", public_coffee_path(@coffee), method: :delete %>
-<% end %>
-
+<div class="coffee-post">
+  <%= image_tag @coffee.get_profile_image(400,400) %><br />
+  <%= @coffee.text %>
+  <div class="favorite_buttons_<%= @coffee.id %>">
+    <%= render "public/favorites/favorite", coffee: @coffee %>
+  </div>
+</div>
+<h4>コメント</h4>
 <%= form_with model: @coffee_comment, url: public_coffee_coffee_comment_path(@coffee), method: :post, local: false do |f| %>
-  <%= f.text_area :comment, size: "40x5" %>
+  <%= f.text_area :comment, size: "40x1" %>
   <%= f.submit '送信', class: "btn-sm btn-primary" %>
 <% end %>
 

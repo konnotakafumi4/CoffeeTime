@@ -1,8 +1,14 @@
+<div class="coffee_comment">
+  <% comments.each do |comment| %>
+  <div class="coffee_comment_list">
+    <%= image_tag comment.end_user.get_profile_image(100,100) %>
+    <%= comment.end_user.name %>
+    <% if comment.end_user == current_end_user %>
+      <%= link_to "削除", public_coffee_comment_path(comment), method: :delete, remote: true %>
+      
+    <% end %><br />
+    <%= comment.comment %>
 
-<% comments.each do |comment| %>
-  <%= comment.end_user.name %>
-  <%= comment.comment %>
-  <% if comment.end_user == current_end_user %>
-    <%= link_to "削除", public_coffee_comment_path(comment), method: :delete, remote: true %>
+  </div>
   <% end %>
-<% end %>
+</div>

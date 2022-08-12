@@ -13,7 +13,7 @@ Rails.application.routes.draw do
     end
     resources :coffees, only: [:new, :index, :show, :create, :edit, :update, :destroy] do
       resource :favorites, only: [:create, :destroy]
-      resource :coffee_comment, only: [:create]
+      resource :coffee_comment, only: [:create, :edit]
     end
     resources :coffee_comments, only: [:destroy]
   end
