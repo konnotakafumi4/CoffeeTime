@@ -20,10 +20,13 @@
           <div class="side_menu w-25 fixed-top">
             <ul class="list-group vh-100">
               <li class="list-group-item border-0">
-                <%= link_to "home", public_coffees_path %>
+                <%= link_to "プロフィール",  public_end_user_path(current_end_user) %>
               </li>
               <li class="list-group-item border-0">
-                <%= link_to "プロフィール",  public_end_user_path(current_end_user) %>
+                <%= link_to "タイムライン", public_coffees_time_line_path %>
+              </li>
+              <li class="list-group-item border-0">
+                <%= link_to "投稿一覧", public_coffees_path %>
               </li>
               <li class="list-group-item border-0">
                 <%= link_to "投稿する" , new_public_coffee_path %>

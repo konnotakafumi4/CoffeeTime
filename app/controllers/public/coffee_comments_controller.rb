@@ -23,6 +23,6 @@ class Public::CoffeeCommentsController < ApplicationController
   end
 
   def coffee_comment_params
-    params.require(:coffee_comment).permit(:comment)
+    params.require(:coffee_comment).permit(:comment, images: [])
   end
 end

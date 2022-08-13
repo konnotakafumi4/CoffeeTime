@@ -13,6 +13,13 @@ class Public::CoffeesController < ApplicationController
     @coffees = Coffee.all
   end
 
+  def time_line
+    @coffee_all = Coffee.includes(:end_user)
+    @end_user = EndUser.find(current_end_user.id)
+    @follow_users = @end_user.followings
+    @coffees_all = @coffee_all.where(end_user_id: @follow_users).order("created_at DESC").page(params[:page]).per(10)
+  end
+
   def show
     @coffee = Coffee.find(params[:id])
     @coffee_comment = CoffeeComment.new
@@ -38,6 +45,6 @@ class Public::CoffeesController < ApplicationController
   private
 
   def coffee_params
-    params.require(:coffee).permit(:image, :text)
+    params.require(:coffee).permit(:text, images: [])
   end
 end

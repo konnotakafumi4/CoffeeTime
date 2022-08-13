@@ -1,7 +1,7 @@
 <h1>投稿詳細</h1>
 <div class="first-infoemation">
   <%= link_to public_end_user_path(@coffee.end_user) do %>
-    <%= image_tag @coffee.end_user.get_profile_image(100,100) %>
+    <%= image_tag @coffee.end_user.get_profile_image(100,100), class: "rounded-circle" %>
     <%= @coffee.end_user.name %>
   <% end %>
 </div>
@@ -13,7 +13,10 @@
 </div>
 
 <div class="coffee-post">
-  <%= image_tag @coffee.get_profile_image(400,400) %><br />
+  <% @coffee.get_profile_image(400,400).each do |image| %>
+    <%= image_tag image %><br />
+  <% end %>
+  <br />
   <%= @coffee.text %>
   <div class="favorite_buttons_<%= @coffee.id %>">
     <%= render "public/favorites/favorite", coffee: @coffee %>
@@ -21,7 +24,13 @@
 </div>
 <h4>コメント</h4>
 <%= form_with model: @coffee_comment, url: public_coffee_coffee_comment_path(@coffee), method: :post, local: false do |f| %>
-  <%= f.text_area :comment, size: "40x1" %>
+  <div class="form-group">
+    <%= f.text_area :comment, size: "40x1" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :images, "画像" %>
+    <%= f.file_field :images, accept: "image/*", multiple: true %>
+  </div>
   <%= f.submit '送信', class: "btn-sm btn-primary" %>
 <% end %>
 

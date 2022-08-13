@@ -3,14 +3,14 @@ class Coffee < ApplicationRecord
   has_many :coffee_comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
 
-  has_one_attached :image
+  has_many_attached :images
 
   def get_profile_image(width, height)
-    unless image.attached?
+    unless images.attached?
      file_path = Rails.root.join('app/assets/images/no_image.jpg')
-     image.attach(io: File.open(file_path), filename: 'default-image.png', content_type: 'image/jpeg')
+     images.attach(io: File.open(file_path), filename: 'default-image.png', content_type: 'image/jpeg')
     end
-     image.variant(resize_to_limit: [width, height]).processed
+     images.map { |image| image.variant(resize_to_limit: [width, height]).processed }
   end
 
   has_many :favorites, dependent: :destroy

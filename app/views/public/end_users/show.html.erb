@@ -16,7 +16,7 @@
 
 <div class="information">
   <div class="first-infoemation">
-    <%= image_tag @end_user.get_profile_image(100,100) %>
+    <%= image_tag @end_user.get_profile_image(100,100), class: "rounded-circle" %>
     <%= @end_user.name %><br />
   </div>
   <div class="introduction">
@@ -36,12 +36,14 @@
   <% @coffees.each do |coffee| %>
     <div class="coffee_list_box mb-2">
       <%= link_to public_end_user_path(coffee.end_user) do %>
-        <%= image_tag coffee.end_user.get_profile_image(50,50) %>
+        <%= image_tag coffee.end_user.get_profile_image(50,50), class: "rounded-circle" %>
         <%= coffee.end_user.name %>
       <% end %>
       <br />
       <%= link_to public_coffee_path(coffee) do %>
-        <%= image_tag coffee.get_profile_image(400,400) %><br />
+        <% coffee.get_profile_image(400,400).each do |image| %>
+          <%= image_tag image %><br />
+        <% end %>
         <%= coffee.text %>
       <% end %>
 
