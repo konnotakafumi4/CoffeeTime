@@ -1,0 +1,29 @@
+<div class="coffee_list">
+  <% @coffees.each do |coffee| %>
+
+    <div class="coffee_list_box mb-2">
+      <%= link_to admin_end_user_path(coffee.end_user) do %>
+        <%= image_tag coffee.end_user.get_profile_image(100,100), class: "rounded-circle" %>
+        <%= coffee.end_user.name %>
+      <% end %>
+      <br />
+      <%= link_to admin_coffee_path(coffee) do %>
+        <% coffee.get_profile_image(400,400).each do |image| %>
+          <%= image_tag image %>
+        <% end %><br />
+        <%= coffee.text %>
+      <% end %>
+
+      <div class="form-inline">
+        <%= link_to admin_coffee_path(coffee) do %>
+          コメント<%= coffee.coffee_comments.count %>
+        <% end %>
+
+        <div class="favorite_buttons_<%= coffee.id %>">
+          <%= render "public/favorites/favorite", coffee: coffee %>
+        </div>
+      </div>
+
+    </div>
+  <% end %>
+</div>

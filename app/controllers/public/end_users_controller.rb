@@ -17,6 +17,12 @@ class Public::EndUsersController < ApplicationController
     redirect_to public_end_user_path
   end
 
+  def favorites
+    @end_user = EndUser.find(params[:id])
+    favorites = Favorite.where(end_user_id: @end_user.id).pluck(:coffee_id)
+    @favorite_coffees = Coffee.find(favorites)
+  end
+
   private
   def end_user_params
     params.require(:end_user).permit(:name, :introduction, :end_user_image)
