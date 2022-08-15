@@ -1,18 +1,20 @@
 <h1>ユーザー詳細</h1>
 
-  <div class="change-btn text-right">
-    <% if @end_user == current_end_user %>
-      <%= link_to "編集", edit_public_end_user_path %>
-    <% end %>
-    <% unless @end_user == current_end_user %>
-      <% if current_end_user.following?(@end_user) %>
-        <%= link_to "フォロー外す", public_end_user_relationships_path(@end_user.id), method: :delete, remote: true %>
-      <% else %>
-        <%= link_to "フォローする", public_end_user_relationships_path(@end_user.id), method: :post, remote: true %>
-      <% end %>
-    <% end %>
-  </div>
+  <!--<div class="change-btn text-right">-->
+    <%# if @end_user == current_end_user %>
+      <%#= link_to "編集", edit_public_end_user_path %>
+    <%# end %>
+    <%# unless @end_user == current_end_user %>
+      <%#if current_end_user.following?(@end_user) %>
+        <%#= link_to "フォロー外す", public_end_user_relationships_path(@end_user.id), method: :delete, remote: true %>
+      <%# else %>
+        <%#= link_to "フォローする", public_end_user_relationships_path(@end_user.id), method: :post, remote: true %>
+      <%# end %>
+    <%# end %>
+  <!--</div>-->
 
+
+<%= link_to "退会する", admin_end_user_withdrawal_path(@end_user), method: :patch, data: { confilm: "本当に退会しますか？" } %>
 
 <div class="information">
   <div class="first-infoemation">
@@ -43,7 +45,7 @@
         <%= coffee.end_user.name %>
       <% end %>
       <br />
-      <%= link_to public_coffee_path(coffee) do %>
+      <%= link_to admin_coffee_path(coffee) do %>
         <% coffee.get_profile_image(400,400).each do |image| %>
           <%= image_tag image %><br />
         <% end %>
@@ -56,7 +58,7 @@
         <% end %>
 
         <div class="favorite_buttons_<%= coffee.id %>">
-          <%= render "public/favorites/favorite", coffee: coffee %>
+          <%#= render "admin/favorites/favorite", coffee: coffee %>
         </div>
       </div>
     </div>

@@ -3,6 +3,8 @@ Rails.application.routes.draw do
 
   get "search" => "searches#search"
 
+
+
   devise_for :end_user, skip: [:passwords], controllers: {
     registrations: "public/registrations",
     sessions: 'public/sessions'
@@ -34,7 +36,12 @@ Rails.application.routes.draw do
 
   namespace :admin do
     get "/"=>"homes#top"
-    resources :end_users, only: [:index, :show]
+    get "/unsubscribe"=>"admin#unsubscribe"
+    get "/confirm"=>"admin#confirm"
+
+    resources :end_users, only: [:index, :show] do
+      patch "/withdrawal"=>"end_users#withdrawal"
+    end
     resources :coffees, only: [:index, :show]
     resources :coffee_comments, only: [:destroy]
   end

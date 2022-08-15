@@ -12,8 +12,6 @@
   </head>
 
   <body>
-    <div class="container">
-
       <div class="wapper d-flex flex-wrap">
         <% if end_user_signed_in? %>
             <%= render 'layouts/serach' %>
@@ -38,13 +36,26 @@
                 <%= link_to "ログアウト", destroy_end_user_session_path, method: :delete %>
               </li>
           </div>
+        <% elsif admin_signed_in? %>
+        <div class="side_menu w-25 fixed-top">
+            <ul class="list-group vh-100">
+              <li class="list-group-item border-0">
+                <%= link_to "ユーザー一覧",  admin_end_users_path %>
+              </li>
+              <li class="list-group-item border-0">
+                <%= link_to "投稿一覧", admin_coffees_path %>
+              </li>
+            </ul>
+        </div>
         <% end %>
-        <div class="w-25"></div>
+        <div class="w-25">
+          <%= image_tag "coffee-gcc588d6f8_640", size: "172x172" %>
+        </div>
+
         <div class="main_content w-75">
           <%= yield %>
 
         </div>
-      </div>
     </div>
   </body>
 </html>
