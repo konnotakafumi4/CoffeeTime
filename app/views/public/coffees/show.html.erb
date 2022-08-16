@@ -18,6 +18,7 @@
   <% end %>
   <br />
   <%= @coffee.text %>
+  <i class="fa fa-commenting-o"></i><%= @coffee.coffee_comments.count %>
   <div class="favorite_buttons_<%= @coffee.id %>">
     <%= render "public/favorites/favorite", coffee: @coffee %>
   </div>

@@ -23,6 +23,13 @@ class Public::EndUsersController < ApplicationController
     @favorite_coffees = Coffee.find(favorites)
   end
 
+  def destroy
+    @end_user = EndUser.find(params[:id])
+    @end_user.destroy
+    flash[:notice] = 'ユーザーを削除しました。'
+    redirect_to :root #削除に成功すればrootページに戻る
+  end
+
   private
   def end_user_params
     params.require(:end_user).permit(:name, :introduction, :end_user_image)

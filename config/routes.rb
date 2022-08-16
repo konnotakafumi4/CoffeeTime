@@ -19,7 +19,7 @@ Rails.application.routes.draw do
     get 'relationships/followings'
     get 'relationships/followers'
     get 'coffees/time_line'
-    resources :end_users, only: [:index, :show, :edit, :update] do
+    resources :end_users, only: [:index, :show, :edit, :update, :destroy] do
       member do
         get :favorites
       end
@@ -39,10 +39,12 @@ Rails.application.routes.draw do
     get "/unsubscribe"=>"admin#unsubscribe"
     get "/confirm"=>"admin#confirm"
 
-    resources :end_users, only: [:index, :show] do
-      patch "/withdrawal"=>"end_users#withdrawal"
+    resources :end_users, only: [:index, :show, :destroy] do
+      member do
+        get :favorites
+      end
     end
-    resources :coffees, only: [:index, :show]
+    resources :coffees, only: [:index, :show ,:destroy]
     resources :coffee_comments, only: [:destroy]
   end
 

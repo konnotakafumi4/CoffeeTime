@@ -16,7 +16,7 @@
 
       <div class="form-inline">
         <%= link_to public_coffee_path(coffee) do %>
-          コメント<%= coffee.coffee_comments.count %>
+          <i class="fa fa-commenting-o"></i><%= coffee.coffee_comments.count %>
         <% end %>
 
         <div class="favorite_buttons_<%= coffee.id %>">

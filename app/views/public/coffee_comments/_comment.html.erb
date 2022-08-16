@@ -4,7 +4,7 @@
     <%= image_tag comment.end_user.get_profile_image(100,100), class: "rounded-circle" %>
     <%= comment.end_user.name %>
     <% if comment.end_user == current_end_user %>
-      <%= link_to "削除", public_coffee_comment_path(comment), method: :delete, remote: true %>
+      <%= link_to "削除", public_coffee_comment_path(comment), method: :delete, remote: true, data: { confilm: "本当に削除しますか？" } %>
     <% end %><br />
     <% comment.get_comment_image(100,100).each do |image| %>
       <%= image_tag image %>

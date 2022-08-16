@@ -1,4 +1,12 @@
 <h4>投稿する</h4>
+<% if @coffee.errors.any? %>
+  <%= @coffee.errors.count %>件のエラーが発生しました
+  <ul>
+    <% @coffee.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
 <%= form_with model: @coffee, url: public_coffees_path, method: :post do |f| %>
 <div class="form-group">
   <%= f.label :images, "画像" %>

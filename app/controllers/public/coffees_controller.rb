@@ -4,9 +4,12 @@ class Public::CoffeesController < ApplicationController
   end
 
   def create
-    coffee = current_end_user.coffees.new(coffee_params)
-    coffee.save
-    redirect_to public_coffees_path
+    @coffee = current_end_user.coffees.new(coffee_params)
+    if @coffee.save
+      redirect_to public_coffees_path
+    else
+      render action: :new
+    end
   end
 
   def index

@@ -13,8 +13,7 @@
     <%# end %>
   <!--</div>-->
 
-
-<%= link_to "退会する", admin_end_user_withdrawal_path(@end_user), method: :patch, data: { confilm: "本当に退会しますか？" } %>
+<%= link_to "削除する", admin_end_user_path(@end_user), method: :delete, data: { confirm: "本当に削除しますか？" } %>
 
 <div class="information">
   <div class="first-infoemation">
@@ -33,7 +32,7 @@
     <% end %>
   </div>
   <div class="favorite-list">
-    <%= link_to "いいね一覧", favorites_public_end_user_path(@end_user.id) %>
+    <%= link_to "いいね一覧", favorites_admin_end_user_path(@end_user.id) %>
   </div>
 </div>
 
@@ -53,9 +52,9 @@
       <% end %>
 
       <div class="form-inline">
-        <%= link_to public_coffee_path(coffee) do %>
-          コメント<%= coffee.coffee_comments.count %>
-        <% end %>
+        <%#= link_to public_coffee_path(coffee) do %>
+          <i class="fa fa-commenting-o"><%= coffee.coffee_comments.count %></i><%= coffee.coffee_comments.count %>
+        <%# end %>
 
         <div class="favorite_buttons_<%= coffee.id %>">
           <%#= render "admin/favorites/favorite", coffee: coffee %>

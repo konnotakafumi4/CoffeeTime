@@ -8,4 +8,10 @@ class Admin::CoffeesController < ApplicationController
     @coffee_comment = CoffeeComment.new
     @comments = @coffee.coffee_comments
   end
+
+  def destroy
+    @coffee = Coffee.find(params[:id])
+    @coffee.destroy
+    redirect_to admin_coffees_path
+  end
 end

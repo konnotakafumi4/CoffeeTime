@@ -6,10 +6,9 @@
   <% end %>
 </div>
 <div class="btn">
-  <% if @coffee.end_user == current_end_user %>
-      <%= link_to "編集", edit_public_coffee_path(@coffee) %>
-      <%= link_to "削除", public_coffee_path(@coffee), method: :delete %>
-  <% end %>
+  <%# if @coffee.end_user == current_end_user %>
+      <%= link_to "削除", admin_coffee_path(@coffee), method: :delete %>
+  <%# end %>
 </div>
 
 <div class="coffee-post">
@@ -22,17 +21,17 @@
     <%= render "admin/favorites/favorite", coffee: @coffee %>
   </div>
 </div>
-<h4>コメント</h4>
-<%= form_with model: @coffee_comment, url: public_coffee_coffee_comment_path(@coffee), method: :post, local: false do |f| %>
-  <div class="form-group">
-    <%= f.text_area :comment, size: "40x1" %>
-  </div>
-  <div class="form-group">
-    <%= f.label :images, "画像" %>
-    <%= f.file_field :images, accept: "image/*", multiple: true %>
-  </div>
-  <%= f.submit '送信', class: "btn-sm btn-primary" %>
-<% end %>
+<!--<h4>コメント</h4>-->
+<%#= form_with model: @coffee_comment, url: public_coffee_coffee_comment_path(@coffee), method: :post, local: false do |f| %>
+  <!--<div class="form-group">-->
+    <%#= f.text_area :comment, size: "40x1" %>
+  <!--</div>-->
+  <!--<div class="form-group">-->
+    <%#= f.label :images, "画像" %>
+    <%#= f.file_field :images, accept: "image/*", multiple: true %>
+  <!--</div>-->
+  <%#= f.submit '送信', class: "btn-sm btn-primary" %>
+<%# end %>
 
 <div class="comments-area">
   <%= render "public/coffee_comments/comment", comments: @comments %>

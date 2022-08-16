@@ -1,5 +1,5 @@
 <div class="coffee_list">
-  <% @coffees.each do |coffee| %>
+  <% @favorite_coffees.each do |coffee| %>
 
     <div class="coffee_list_box mb-2">
       <%= link_to admin_end_user_path(coffee.end_user) do %>
@@ -20,10 +20,11 @@
         <% end %>
 
         <div class="favorite_buttons_<%= coffee.id %>">
-          <%= render "public/favorites/favorite", coffee: coffee %>
+          <%= render "admin/favorites/favorite", coffee: coffee %>
         </div>
       </div>
 
     </div>
   <% end %>
+
 </div>
