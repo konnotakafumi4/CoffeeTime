@@ -61,7 +61,7 @@ gem 'jquery-rails'
 #テストデプロイ
 gem 'dotenv-rails'
 group :production do
-  gem 'myspl2'
+  gem 'mysql2'
 end
 
 gem "net-smtp"

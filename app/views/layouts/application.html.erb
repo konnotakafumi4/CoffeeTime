@@ -37,15 +37,19 @@
             <li><%= link_to "コーヒーの時間とは？🔰", public_homes_about_path, class: "btn btn-outline-light mr-2" %></li>
             <li><%= link_to "ログアウト", destroy_end_user_session_path, method: :delete, class: "btn btn-outline-light mr-2" %></li>
           </ul>
-        <% else admin_signed_in? %>
+        <% elsif admin_signed_in? %>
           <ul class="navbar-nav ml-auto">
             <li><%= link_to "ユーザー一覧", admin_end_users_path, class: "btn btn-outline-light mr-2" %></li>
             <li><%= link_to "投稿一覧", admin_coffees_path, class: "btn btn-outline-light mr-2" %></li>
             <li><%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "btn btn-outline-light mr-2" %></li>
           </ul>
-        <% end %>
+        <% else %>
           <ul class="navbar-nav ml-auto">
+            <li><%= link_to "コーヒーの時間とは？🔰", public_homes_about_path, class: "btn btn-outline-light mr-2" %></li>
+            <li><%= link_to '新規登録', new_end_user_registration_path, class: "btn btn-outline-light mr-2" %></li>
+            <li><%= link_to 'ログイン', new_end_user_session_path, class: "btn btn-outline-light mr-2" %></li>
           </ul>
+        <% end %>
     </nav>
     <!--  <div class="wapper d-flex flex-wrap">-->
     <!--    <%# if end_user_signed_in? %>-->
@@ -90,5 +94,8 @@
     <%= yield %>
     <!--    </div>-->
     <!--</div>-->
+    <footer class="color text-light pt-3 pb-1">
+        <p class="text-center"> © na cake 2022</p>
+    </footer>
   </body>
 </html>
