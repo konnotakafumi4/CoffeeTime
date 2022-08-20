@@ -7,6 +7,7 @@ class Coffee < ApplicationRecord
   has_many_attached :images
 
   validates :images, attached_file_number: { maximum: 2 }
+  validates :text, presence: true
 
   def get_profile_image(width, height)
     #unless images.attached?

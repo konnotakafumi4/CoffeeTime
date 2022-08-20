@@ -8,94 +8,50 @@
 
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
-    <script src="https://kit.fontawesome.com/7ad923b815.js" crossorigin="anonymous"></script>
   </head>
 
   <body>
-    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #834f2f;">
-      <!--流動性のあるコンテナにする-->
-      <div class="container-fluid">
-        <!--意味が分からない-->
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavDropdown">
-          <div class="float-left header-logo">
-            <%= link_to root_path do %>
-            <%= image_tag('Coffeetime.png') %>
-            <% end %>
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #834f2f;">
+        <!--流動性のあるコンテナにする-->
+        <div class="container-fluid">
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <div class="float-left header-logo">
+              <%= link_to root_path do %>
+              <%= image_tag('Coffeetime.png') %>
+              <% end %>
+            </div>
           </div>
-        </div>
-        <% if end_user_signed_in? %>
-          <%= render 'layouts/searches/serach' %>
-          <ul class="navbar-nav ml-auto">
-            <li><%= link_to "プロフィール",  public_end_user_path(current_end_user), class: "btn btn-outline-light mr-2" %></li>
-            <li><%= link_to "タイムライン", public_coffees_time_line_path, class: "btn btn-outline-light mr-2" %></li>
-            <li><%= link_to "投稿一覧", public_coffees_path, class: "btn btn-outline-light mr-2" %></li>
-            <li><%= link_to "投稿する" , new_public_coffee_path, class: "btn btn-outline-light mr-2" %></li>
-            <li><%= link_to "コーヒーの時間とは？🔰", public_homes_about_path, class: "btn btn-outline-light mr-2" %></li>
-            <li><%= link_to "ログアウト", destroy_end_user_session_path, method: :delete, class: "btn btn-outline-light mr-2" %></li>
-          </ul>
-        <% elsif admin_signed_in? %>
-          <ul class="navbar-nav ml-auto">
-            <li><%= link_to "ユーザー一覧", admin_end_users_path, class: "btn btn-outline-light mr-2" %></li>
-            <li><%= link_to "投稿一覧", admin_coffees_path, class: "btn btn-outline-light mr-2" %></li>
-            <li><%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "btn btn-outline-light mr-2" %></li>
-          </ul>
-        <% else %>
-          <ul class="navbar-nav ml-auto">
-            <li><%= link_to "コーヒーの時間とは？🔰", public_homes_about_path, class: "btn btn-outline-light mr-2" %></li>
-            <li><%= link_to '新規登録', new_end_user_registration_path, class: "btn btn-outline-light mr-2" %></li>
-            <li><%= link_to 'ログイン', new_end_user_session_path, class: "btn btn-outline-light mr-2" %></li>
-          </ul>
-        <% end %>
-    </nav>
-    <!--  <div class="wapper d-flex flex-wrap">-->
-    <!--    <%# if end_user_signed_in? %>-->
-    <!--        <%#= render 'searches/serach' %>-->
-    <!--      <div class="side_menu w-25">-->
-    <!--        <ul class="list-group vh-100">-->
-    <!--          <li class="list-group-item border-0">-->
-    <!--            <%#= link_to "プロフィール",  public_end_user_path(current_end_user) %>-->
-    <!--          </li>-->
-    <!--          <li class="list-group-item border-0">-->
-    <!--            <%#= link_to "タイムライン", public_coffees_time_line_path %>-->
-    <!--          </li>-->
-    <!--          <li class="list-group-item border-0">-->
-    <!--            <%#= link_to "投稿一覧", public_coffees_path %>-->
-    <!--          </li>-->
-    <!--          <li class="list-group-item border-0">-->
-    <!--            <%#= link_to "投稿する" , new_public_coffee_path %>-->
-    <!--          </li>-->
-    <!--          <li class="list-group-item border-0">-->
-    <!--            <%#= link_to "コーヒーの時間とは？", public_homes_about_path %>-->
-    <!--          </li>-->
-    <!--          <li class="list-group-item border-0">-->
-    <!--            <%#= link_to "ログアウト", destroy_end_user_session_path, method: :delete %>-->
-    <!--          </li>-->
-    <!--      </div>-->
-    <!--    <%# elsif admin_signed_in? %>-->
-    <!--    <div class="side_menu w-25">-->
-    <!--        <ul class="list-group vh-100">-->
-    <!--          <li class="list-group-item border-0">-->
-    <!--            <%#= link_to "ユーザー一覧",  admin_end_users_path %>-->
-    <!--          </li>-->
-    <!--          <li class="list-group-item border-0">-->
-    <!--            <%#= link_to "投稿一覧", admin_coffees_path %>-->
-    <!--          </li>-->
-    <!--        </ul>-->
-    <!--    </div>-->
-    <!--    <%# end %>-->
-    <!--    <div class="w-25 vh-100">-->
-          <%#= image_tag "2621231.jpg", size: "500" %>
-    <!--    </div>-->
-    <!--    <div class="main_content w-75">-->
-    <%= yield %>
-    <!--    </div>-->
-    <!--</div>-->
-    <footer class="color text-light pt-3 pb-1">
-        <p class="text-center"> © na cake 2022</p>
+          <% if end_user_signed_in? %>
+            <%= render 'layouts/searches/serach' %>
+            <ul class="navbar-nav ml-auto">
+              <li><%= link_to "プロフィール",  public_end_user_path(current_end_user), class: "btn btn-outline-light mr-2" %></li>
+              <li><%= link_to "タイムライン", public_coffees_time_line_path, class: "btn btn-outline-light mr-2" %></li>
+              <li><%= link_to "投稿一覧", public_coffees_path, class: "btn btn-outline-light mr-2" %></li>
+              <li><%= link_to "投稿する" , new_public_coffee_path, class: "btn btn-outline-light mr-2" %></li>
+              <li><%= link_to "コーヒーの時間とは？🔰", public_homes_about_path, class: "btn btn-outline-light mr-2" %></li>
+              <li><%= link_to "ログアウト", destroy_end_user_session_path, method: :delete, class: "btn btn-outline-light mr-2" %></li>
+            </ul>
+          <% elsif admin_signed_in? %>
+            <ul class="navbar-nav ml-auto">
+              <li><%= link_to "ユーザー一覧", admin_end_users_path, class: "btn btn-outline-light mr-2" %></li>
+              <li><%= link_to "投稿一覧", admin_coffees_path, class: "btn btn-outline-light mr-2" %></li>
+              <li><%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "btn btn-outline-light mr-2" %></li>
+            </ul>
+          <% else %>
+            <ul class="navbar-nav ml-auto">
+              <li><%= link_to "コーヒーの時間とは？🔰", public_homes_about_path, class: "btn btn-outline-light mr-2" %></li>
+              <li><%= link_to '新規登録', new_end_user_registration_path, class: "btn btn-outline-light mr-2" %></li>
+              <li><%= link_to 'ログイン', new_end_user_session_path, class: "btn btn-outline-light mr-2" %></li>
+            </ul>
+          <% end %>
+      </nav>
+    </header>
+    <div class="container" style='min-height: calc(100vh - 100px);'>
+      <%= yield %>
+    </div>
+    <footer class="color text-light pt-3 pb-1" style="background-color: #834f2f;">
+        <p class="text-center"> © CoffeeTime 2022</p>
     </footer>
   </body>
 </html>
