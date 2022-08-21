@@ -1,4 +1,5 @@
 class EndUser < ApplicationRecord
+  validates :name, presence: true
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -18,15 +19,13 @@ class EndUser < ApplicationRecord
 
   has_one_attached :end_user_image
 
-  validates :name, presence: true
-  validates :email, presence: true
-  validates :password, presence: true
-
+  #validates :email, presence: true
+  #validates :password, presence: true
 
   def get_profile_image(width, height)
     unless end_user_image.attached?
      file_path = Rails.root.join('app/assets/images/no_image.jpg')
-     end_user_image.attach(io: File.open(file_path), filename: 'default-image.png', content_type: 'image/jpeg')
+     end_user_image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpg')
     end
      end_user_image.variant(resize_to_limit: [width, height]).processed
   end

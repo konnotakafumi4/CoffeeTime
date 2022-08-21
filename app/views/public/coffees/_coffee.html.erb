@@ -1,0 +1,29 @@
+<% coffees.each do |coffee| %>
+  <div class="mb-2 border" style="background-color: #FFDAB9;">
+    <%= link_to public_end_user_path(coffee.end_user) do %>
+      <% if coffee.end_user.end_user_image.attached? %>
+        <%= image_tag coffee.end_user.get_profile_image(80,80), class: "rounded-circle" %>
+      <% else %>
+        <%= image_tag 'no_image.jpg', size: "100", class: "rounded-circle" %>
+      <% end %>
+      <%= coffee.end_user.name %><br />
+    <% end %>
+
+    <%= link_to public_coffee_path(coffee) do %>
+      <% coffee.get_profile_image(400,400).each do |image| %>
+        <%= image_tag image %><br />
+      <% end %>
+      <%= coffee.text %><br />
+    <% end %>
+
+    <div class="">
+      <%= link_to public_coffee_path(coffee) do %>
+        <i class="fa fa-comments"></i><%= coffee.coffee_comments.count %>
+      <% end %>
+
+      <div class="favorite_buttons_<%= coffee.id %>">
+        <%= render "public/favorites/favorite", coffee: coffee %>
+      </div>
+    </div>
+  </div>
+<% end %>

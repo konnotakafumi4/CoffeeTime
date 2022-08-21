@@ -1,9 +1,13 @@
-<h1>マイプロフィール</h1>
+<% if @end_user == current_end_user %>
+  <h3>マイプロフィール</h3>
+<% else %>
+  <h3><%= @end_user.name %>さんのプロフィール</h3>
+<% end %>
 
-  <div class="change-btn text-right">
+  <div class="text-right">
     <% if @end_user == current_end_user %>
       <%= link_to "編集", edit_public_end_user_path, class: "btn btn-outline-success" %>
-      <%= link_to "削除", admin_end_user_path(@end_user), class: "btn btn-outline-danger" %>
+      <%= link_to "削除", admin_end_user_path(@end_user), class: "btn btn-outline-danger", data: { confirm: "このアカウントを削除します、よろしいですか？" } %>
     <% end %>
     <% unless @end_user == current_end_user %>
       <% if current_end_user.following?(@end_user) %>
@@ -14,15 +18,21 @@
     <% end %>
   </div>
 
-<div class="information">
-  <div class="first-infoemation">
-    <%= image_tag @end_user.get_profile_image(150,150), class: "rounded-circle" %>
+<div class="">
+  <div class="">
+    <% if @end_user.end_user_image.attached? %>
+      <%= image_tag @end_user.get_profile_image(100,100), class: "rounded-circle" %>
+    <% else %>
+      <%= image_tag 'no_image.jpg', size: "100", class: "rounded-circle" %>
+    <% end %>
     <%= @end_user.name %><br />
   </div>
-  <div class="introduction">
+
+  <div class="">
     <%= @end_user.introduction %><br />
   </div>
-  <div class="follower-count">
+
+  <div class="">
     <%= link_to public_end_user_followings_path(@end_user.id) do %>
       フォロー<%= @end_user.followings.count %>
     <% end %>
@@ -30,35 +40,18 @@
       フォロワー<%= @end_user.followers.count %>
     <% end %>
   </div>
-  <div class="favorite-list">
+
+  <div class="">
     <%= link_to "いいね一覧", favorites_public_end_user_path(@end_user.id) %>
   </div>
 </div>
 
-<div class="end_user_coffee_list">
-  <% @coffees.each do |coffee| %>
-    <div class="coffee_list_box mb-2 border">
-      <%= link_to public_end_user_path(coffee.end_user) do %>
-        <%= image_tag coffee.end_user.get_profile_image(100,100), class: "rounded-circle" %>
-        <%= coffee.end_user.name %>
-      <% end %>
-      <br />
-      <%= link_to public_coffee_path(coffee) do %>
-        <% coffee.get_profile_image(400,400).each do |image| %>
-          <%= image_tag image %><br />
-        <% end %>
-        <%= coffee.text %>
-      <% end %>
+<% if @end_user == current_end_user %>
+  <h3>投稿一覧</h3>
+<% else %>
+  <h3><%= @end_user.name %>さんの投稿一覧</h3>
+<% end %>
 
-      <div class="form-inline">
-        <%= link_to public_coffee_path(coffee) do %>
-          <i class="fa fa-comments"></i><%= coffee.coffee_comments.count %>
-        <% end %>
-
-        <div class="favorite_buttons_<%= coffee.id %>">
-          <%= render "public/favorites/favorite", coffee: coffee %>
-        </div>
-      </div>
-    </div>
-  <% end %>
+<div class="">
+  <%= render "public/coffees/coffee", coffees: @coffees %>
 </div>

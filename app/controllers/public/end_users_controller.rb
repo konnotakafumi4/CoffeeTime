@@ -13,6 +13,7 @@ class Public::EndUsersController < ApplicationController
 
   def update
     end_user = EndUser.find(params[:id])
+    byebug
     end_user.update(end_user_params)
     redirect_to public_end_user_path
   end
