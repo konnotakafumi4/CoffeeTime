@@ -1,4 +1,7 @@
 class Public::CoffeesController < ApplicationController
+  before_action :authenticate_end_user!
+  before_action :ensure_correct_end_user, only: [:create, :edit, :update, :destroy]
+
   def new
     @coffee = Coffee.new
   end
@@ -49,5 +52,12 @@ class Public::CoffeesController < ApplicationController
 
   def coffee_params
     params.require(:coffee).permit(:text, images: [])
+  end
+
+  def ensure_correct_end_user
+    @coffee = Coffee.find(params[:id])
+    unless @coffee.end_user == current_end_user
+      redirect_to public_coffees_path
+    end
   end
 end

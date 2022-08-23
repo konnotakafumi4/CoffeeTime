@@ -1,9 +1,16 @@
 <h3>投稿編集</h3>
 <%= form_with model: @coffee, url: public_coffee_path, method: :patch do |f| %>
-  <%= f.file_field :image, class: "form-control-file user_image", accept: 'image/*' %>
-
-  <%= f.label :text %>
-  <%= f.text_area :text, class: 'form-control book_body' %>
-
-  <%= f.submit '編集', class: 'btn btn-success' %>
+  <div class="mb-2 border rounded p-2" style="background-color: #ead7a4;">
+    <div class="p-2">
+      <%= f.label :image, "image" %>
+      <%= f.file_field :image, class: "form-control-file user_image", accept: 'image/*' %>
+    </div>
+    <div class="p-2">
+      <%= f.label :text, "text" %>
+      <%= f.text_area :text, class: 'form-control book_body' %>
+    </div>
+    <div class="p-2">
+      <%= f.submit '編集', class: 'btn btn-success' %>
+    </div>
+  </div>
 <% end %>

@@ -19,9 +19,6 @@ class EndUser < ApplicationRecord
 
   has_one_attached :end_user_image
 
-  #validates :email, presence: true
-  #validates :password, presence: true
-
   def get_profile_image(width, height)
     unless end_user_image.attached?
      file_path = Rails.root.join('app/assets/images/no_image.jpg')

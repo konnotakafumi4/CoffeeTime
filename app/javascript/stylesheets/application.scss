@@ -1,2 +1,21 @@
 @import '~bootstrap/scss/bootstrap';
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
+@import url('https://fonts.googleapis.com/css2?family=Alumni+Sans+Pinstripe&family=Kiwi+Maru:wght@300&display=swap');
+
+ body {
+  background-image: url(../images/b106.jpeg);
+  font-family: 'Alumni Sans Pinstripe', sans-serif;
+  font-family: 'Kiwi Maru', serif;
+ }
+
+ a:hover {
+  text-decoration: none;
+}
+
+.about {
+ background-image: url(../images/coffee-2235370_1920.jpg);
+ width: 100%;
+ height: 400%;
+ background-position: center;
+ background-size: cover;
+}

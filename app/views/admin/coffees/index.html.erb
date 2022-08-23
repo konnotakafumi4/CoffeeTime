@@ -20,7 +20,7 @@
         <% end %>
 
         <div class="favorite_buttons_<%= coffee.id %>">
-          <%= render "public/favorites/favorite", coffee: coffee %>
+          <i class="fas fa-heart"></i><%= coffee.favorites.count %>
         </div>
       </div>
 

@@ -4,10 +4,10 @@
   <h3><%= @end_user.name %>さんのプロフィール</h3>
 <% end %>
 
-  <div class="text-right">
+  <div class="text-right p-2">
     <% if @end_user == current_end_user %>
-      <%= link_to "編集", edit_public_end_user_path, class: "btn btn-outline-success" %>
-      <%= link_to "削除", admin_end_user_path(@end_user), class: "btn btn-outline-danger", data: { confirm: "このアカウントを削除します、よろしいですか？" } %>
+      <%= link_to "編集", edit_public_end_user_path, class: "btn btn-success" %>
+      <%= link_to "削除", admin_end_user_path(@end_user), class: "btn btn-danger", data: { confirm: "このアカウントを削除します、よろしいですか？" } %>
     <% end %>
     <% unless @end_user == current_end_user %>
       <% if current_end_user.following?(@end_user) %>
@@ -18,8 +18,8 @@
     <% end %>
   </div>
 
-<div class="">
-  <div class="">
+<div class="rounded" style="background-color: #cc9660; font-size: 20px;">
+  <div class="p-2">
     <% if @end_user.end_user_image.attached? %>
       <%= image_tag @end_user.get_profile_image(100,100), class: "rounded-circle" %>
     <% else %>
@@ -28,11 +28,11 @@
     <%= @end_user.name %><br />
   </div>
 
-  <div class="">
+  <div class="p-2" style="background-color: #e6a96c;">
     <%= @end_user.introduction %><br />
   </div>
 
-  <div class="">
+  <div class="p-2">
     <%= link_to public_end_user_followings_path(@end_user.id) do %>
       フォロー<%= @end_user.followings.count %>
     <% end %>
@@ -41,17 +41,19 @@
     <% end %>
   </div>
 
-  <div class="">
+  <div class="rounded-bottom p-2" style="background-color: #b38354;">
     <%= link_to "いいね一覧", favorites_public_end_user_path(@end_user.id) %>
   </div>
 </div>
 
-<% if @end_user == current_end_user %>
-  <h3>投稿一覧</h3>
-<% else %>
-  <h3><%= @end_user.name %>さんの投稿一覧</h3>
-<% end %>
+<div class="p-2">
+  <% if @end_user == current_end_user %>
+    <h3>投稿一覧</h3>
+  <% else %>
+    <h3><%= @end_user.name %>さんの投稿一覧</h3>
+  <% end %>
+</div>
 
-<div class="">
+<div class="p-2">
   <%= render "public/coffees/coffee", coffees: @coffees %>
 </div>

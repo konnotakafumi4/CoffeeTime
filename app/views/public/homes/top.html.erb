@@ -1,14 +1,19 @@
-<div class="container">
-  <div class="row">
-    <div class='mx-auto col-11 col-sm-10 col-lg-8 col-xl-6'>
-      <h1>コーヒーの時間を過ごしませんか？</h1>
-      <div class="btn-wrapper col-10 mx-auto">
-        <div class="row">
-          <%= link_to 'ログイン', new_end_user_session_path, class: "btn btn-info btn-sm btn-block mb-3 sign_in" %>
-        </div>
-        <div class="row">
-          <%= link_to '新規登録', new_end_user_registration_path, class: "btn btn-success btn-sm btn-block sign_up" %>
-        </div>
+<div class="row">
+  <div class='mx-auto col-11 col-sm-10 col-lg-8 col-xl-6 m-5'>
+    <div class="p-2">
+      <h1>Welcome to CoffeeTime!</h1>
+    </div>
+    <div class="p-4">
+      <h2>今日も</h2>
+      <h2>コーヒーの時間を</h2>
+      <h2>過ごしませんか？</h2>
+    </div>
+    <div class="btn-wrapper col-10 mx-auto m-5">
+      <div class="row">
+        <%= link_to 'ログイン', new_end_user_session_path, class: "btn btn-info btn-sm btn-block mb-3 sign_in" %>
+      </div>
+      <div class="row">
+        <%= link_to '新規登録', new_end_user_registration_path, class: "btn btn-success btn-sm btn-block sign_up" %>
       </div>
     </div>
   </div>

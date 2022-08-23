@@ -1,0 +1,19 @@
+<% if @range == "ユーザー" %>
+  <h3>ユーザー検索一覧</h3>
+  <% @end_users.each do |end_user| %>
+    <div class="mb-2 border rounded " style="background-color: #ead7a4;">
+      <div class="p-2" style="font-size: 20px;">
+        <%= link_to public_end_user_path(end_user) do %>
+          <%= image_tag end_user.get_profile_image(100,100), class: "rounded-circle" %>
+          <%= end_user.name %>
+        <% end %>
+      </div>
+      <div class="p-2" style="background-color: #e6a96c; font-size: 15px;">
+        <%= end_user.introduction %>
+      </div>
+    </div>
+  <% end %>
+<% else %>
+  <h3>投稿検索一覧</h3>
+  <%= render "public/coffees/coffee", coffees: @coffees %>
+<% end %>

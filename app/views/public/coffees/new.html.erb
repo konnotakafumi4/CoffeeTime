@@ -7,16 +7,18 @@
     <% end %>
   </ul>
 <% end %>
-<%= form_with model: @coffee, url: public_coffees_path, method: :post do |f| %>
-<div class="form-group">
-  <%= f.label :images, "画像" %>
-  <%= f.file_field :images, accept: "image/*", multiple: true %>
+<div class="p-2" style="background-color: #ead7a4;">
+  <%= form_with model: @coffee, url: public_coffees_path, method: :post do |f| %>
+  <div class="form-group p-2">
+    <%= f.label :images, "image" %><br />
+    <%= f.file_field :images, accept: "image/*", multiple: true %>
+  </div>
+  <div class="form-group p-2">
+    <%= f.label :text, "text" %><br />
+    <%= f.text_area :text %>
+  </div>
+  <div class="form-group p-2">
+    <%= f.submit "投稿" %>
+  </div>
+  <% end %>
 </div>
-<div class="form-group">
-  <%= f.label :text %>
-  <%= f.text_area :text %>
-</div>
-<div class="form-group">
-  <%= f.submit "投稿" %>
-</div>
-<% end %>

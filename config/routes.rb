@@ -3,8 +3,6 @@ Rails.application.routes.draw do
 
   get "search" => "searches#search"
 
-
-
   devise_for :end_user, skip: [:passwords], controllers: {
     registrations: "public/registrations",
     sessions: 'public/sessions'
