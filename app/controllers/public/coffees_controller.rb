@@ -1,6 +1,6 @@
 class Public::CoffeesController < ApplicationController
   before_action :authenticate_end_user!
-  before_action :ensure_correct_end_user, only: [:create, :edit, :update, :destroy]
+  before_action :ensure_correct_end_user, { only: [:edit, :update, :destroy] }
 
   def new
     @coffee = Coffee.new
@@ -16,7 +16,7 @@ class Public::CoffeesController < ApplicationController
   end
 
   def index
-    @coffees = Coffee.all
+    @coffees = Coffee.page(params[:page]).per(10)
   end
 
   def time_line
@@ -37,9 +37,12 @@ class Public::CoffeesController < ApplicationController
   end
 
   def update
-    coffee = Coffee.find(params[:id])
-    coffee.update(coffee_params)
-    redirect_to public_coffee_path
+    @coffee = Coffee.find(params[:id])
+    if @coffee.update(coffee_params)
+      redirect_to public_coffee_path
+    else
+      render :edit
+    end
   end
 
   def destroy
@@ -55,9 +58,8 @@ class Public::CoffeesController < ApplicationController
   end
 
   def ensure_correct_end_user
-    @coffee = Coffee.find(params[:id])
-    unless @coffee.end_user == current_end_user
-      redirect_to public_coffees_path
-    end
+    @coffee = Coffee.find_by(id: params[:id])
+    return unless @coffee.end_user_id != current_end_user.id
+    redirect_to public_coffee_path
   end
 end

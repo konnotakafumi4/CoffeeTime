@@ -1,52 +1,55 @@
-<% if @end_user == current_end_user %>
-  <h3>マイプロフィール</h3>
-<% else %>
-  <h3><%= @end_user.name %>さんのプロフィール</h3>
-<% end %>
-
-  <div class="text-right p-2">
+<div class="d-flex bd-highlight mt-5">
+  <div class="mr-auto p-2 bd-highlight">
     <% if @end_user == current_end_user %>
-      <%= link_to "編集", edit_public_end_user_path, class: "btn btn-success" %>
+      <h3>マイプロフィール</h3>
+    <% else %>
+      <h3><%= @end_user.name %>さんのプロフィール</h3>
+    <% end %>
+  </div>
+  <div class="p-2 bd-highlight">
+    <% if @end_user == current_end_user %>
+      <%= link_to "編集", edit_public_end_user_path(@end_user), class: "btn btn-success" %>
       <%= link_to "削除", admin_end_user_path(@end_user), class: "btn btn-danger", data: { confirm: "このアカウントを削除します、よろしいですか？" } %>
     <% end %>
     <% unless @end_user == current_end_user %>
       <% if current_end_user.following?(@end_user) %>
-        <%= link_to "フォロー外す", public_end_user_relationships_path(@end_user.id), method: :delete, remote: true %>
+        <%= link_to "フォロー外す", public_end_user_relationships_path(@end_user.id), method: :delete, remote: true, class: "btn btn-primary" %>
       <% else %>
-        <%= link_to "フォローする", public_end_user_relationships_path(@end_user.id), method: :post, remote: true %>
+        <%= link_to "フォローする", public_end_user_relationships_path(@end_user.id), method: :post, remote: true, class: "btn btn-primary" %>
       <% end %>
     <% end %>
   </div>
+</div>
 
-<div class="rounded" style="background-color: #cc9660; font-size: 20px;">
-  <div class="p-2">
+<div class="profile shadow rounded" style="background-color: #fffcf0; font-size: 20px;">
+  <div class="p-2 border-bottom">
     <% if @end_user.end_user_image.attached? %>
-      <%= image_tag @end_user.get_profile_image(100,100), class: "rounded-circle" %>
+      <%= image_tag @end_user.get_profile_image(60,60), class: "rounded-circle" %>
     <% else %>
       <%= image_tag 'no_image.jpg', size: "100", class: "rounded-circle" %>
     <% end %>
     <%= @end_user.name %><br />
   </div>
 
-  <div class="p-2" style="background-color: #e6a96c;">
+  <div class="p-2 border-bottom" style="background-color: #fffcf0;">
     <%= @end_user.introduction %><br />
   </div>
 
-  <div class="p-2">
+  <div class="p-2 border-bottom">
     <%= link_to public_end_user_followings_path(@end_user.id) do %>
-      フォロー<%= @end_user.followings.count %>
+      フォロー数：<%= @end_user.followings.count %>
     <% end %>
     <%= link_to public_end_user_followers_path(@end_user.id)  do %>
-      フォロワー<%= @end_user.followers.count %>
+      フォロワー数：<%= @end_user.followers.count %>
     <% end %>
   </div>
 
-  <div class="rounded-bottom p-2" style="background-color: #b38354;">
+  <div class="rounded-bottom p-2" style="background-color: #fffcf0;">
     <%= link_to "いいね一覧", favorites_public_end_user_path(@end_user.id) %>
   </div>
 </div>
 
-<div class="p-2">
+<div class="user-coffee-headline">
   <% if @end_user == current_end_user %>
     <h3>投稿一覧</h3>
   <% else %>
@@ -54,6 +57,13 @@
   <% end %>
 </div>
 
-<div class="p-2">
-  <%= render "public/coffees/coffee", coffees: @coffees %>
-</div>
+<%# if @end_user.exists? %>
+  <div class="p-2">
+    <% @coffees.each do |coffee| %>
+      <%= render "public/coffees/coffee", coffee: coffee %>
+    <% end %>
+    <%= paginate @coffees %>
+  </div>
+<%# else %>
+  <!--<p>投稿はまだありません</p>-->
+<%# end %>

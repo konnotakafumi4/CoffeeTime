@@ -1,6 +1,6 @@
 <div class="coffee-list shadow border rounded mt-1" style="background-color: #FFFFF0;">
     <div class="end_user-image-name p-2 border-bottom" style="font-size: 20px;">
-      <%= link_to public_end_user_path(coffee.end_user), class: "link" do %>
+      <%= link_to admin_end_user_path(coffee.end_user), class: "link" do %>
         <% if coffee.end_user.end_user_image.attached? %>
           <%= image_tag coffee.end_user.get_profile_image(60,60), class: "rounded-circle" %>
         <% else %>
@@ -27,7 +27,7 @@
               </div>
             </div>
           <% end %>
-      <%= link_to public_coffee_path(coffee) do %>
+      <%= link_to admin_coffee_path(coffee) do %>
           <div class="text-left">
             <%= coffee.text %><br />
           </div>
@@ -35,23 +35,14 @@
       <% end %>
 
     <div class="d-flex flex-row p-2 m-2">
-      <%= link_to public_coffee_path(coffee) do %>
+      <%= link_to admin_coffee_path(coffee) do %>
         <div class="mr-3">
           <i class="fa fa-comments"></i><%= coffee.coffee_comments.count %>
         </div>
       <% end %>
 
       <div class="favorite_buttons_<%= coffee.id %>">
-        <%= render "public/favorites/favorite", coffee: coffee %>
+        <%= render "admin/favorites/favorite", coffee: coffee %>
       </div>
     </div>
   </div>
-
-<!--<%#= image_tag 'no_image.jpg', size: "100", data: {toggle: "modal", target: ".bd-example-modal-lg"} %>-->
-<!--<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">-->
-<!--  <div class="modal-dialog modal-lg">-->
-<!--    <div class="modal-content">-->
-<!--      <%#= image_tag 'no_image.jpg' %>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--</div>-->

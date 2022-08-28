@@ -14,8 +14,6 @@ Rails.application.routes.draw do
 
   namespace :public do
     get 'homes/about'
-    get 'relationships/followings'
-    get 'relationships/followers'
     get 'coffees/time_line'
     resources :end_users, only: [:index, :show, :edit, :update, :destroy] do
       member do
@@ -34,10 +32,10 @@ Rails.application.routes.draw do
 
   namespace :admin do
     get "/"=>"homes#top"
-    get "/unsubscribe"=>"admin#unsubscribe"
-    get "/confirm"=>"admin#confirm"
 
     resources :end_users, only: [:index, :show, :destroy] do
+      get 'followings' => 'relationships#followings', as: 'followings'
+      get 'followers' => 'relationships#followers', as: 'followers'
       member do
         get :favorites
       end

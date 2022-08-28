@@ -1,0 +1,10 @@
+<%# flash.each do |message_type, message| %>
+　　<!--<div class="alert alert-<%#= message_type %>"><%#= message %></div>-->
+<%# end %>
+
+<div class="text-success">
+  <%= flash[:notice] %>
+</div>
+<div class="bg-danger text-white text-center" style="font-size: 25px;">
+  <%= flash[:alret] %>
+</div>

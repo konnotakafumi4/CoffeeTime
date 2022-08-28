@@ -1,13 +1,14 @@
-<h3>投稿編集</h3>
+<h3 class="coffee-edit-headline">投稿編集</h3>
+<%= render "public/shared/error", coffee: @coffee %>
 <%= form_with model: @coffee, url: public_coffee_path, method: :patch do |f| %>
-  <div class="mb-2 border rounded p-2" style="background-color: #ead7a4;">
+  <div class="shadow mb-2 border rounded p-2" style="background-color: #fffcf0;">
     <div class="p-2">
       <%= f.label :image, "image" %>
       <%= f.file_field :image, class: "form-control-file user_image", accept: 'image/*' %>
     </div>
     <div class="p-2">
       <%= f.label :text, "text" %>
-      <%= f.text_area :text, class: 'form-control book_body' %>
+      <%= f.text_area :text, class: 'form-control' %>
     </div>
     <div class="p-2">
       <%= f.submit '編集', class: 'btn btn-success' %>

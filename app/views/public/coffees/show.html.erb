@@ -1,58 +1,32 @@
-<h3>投稿詳細</h3>
-<div class="text-right">
-  <% if @coffee.end_user == current_end_user %>
-    <%= link_to "編集", edit_public_coffee_path(@coffee), class: "btn btn-success" %>
-    <%= link_to "削除", public_coffee_path(@coffee), method: :delete, class: "btn btn-danger", data: { confirm: "この投稿を削除します、よろしいですか？" } %>
-  <% end %>
-</div>
-<div class="border border border-light p-2 rounded" style="background-color: #ead7a4;">
-
-  <div class="p-2" style="font-size: 20px;">
-    <%= link_to public_end_user_path(@coffee.end_user) do %>
-      <% if @coffee.end_user.end_user_image.attached? %>
-        <%= image_tag @coffee.end_user.get_profile_image(100,100), class: "rounded-circle" %>
-      <% else %>
-        <%= image_tag 'no_image.jpg', size: "100", class: "rounded-circle" %>
-      <% end %>
-      <%= @coffee.end_user.name %><br />
+<div class="coffee-show d-flex bd-highlight mt-5">
+  <h3 class="mr-auto p-2 bd-highlight">投稿詳細</h3>
+  <div class="text-right p-2">
+    <% if @coffee.end_user == current_end_user %>
+      <%= link_to "編集", edit_public_coffee_path(@coffee), class: "btn btn-success" %>
+      <%= link_to "削除", public_coffee_path(@coffee), method: :delete, class: "btn btn-danger", data: { confirm: "この投稿を削除します、よろしいですか？" } %>
     <% end %>
   </div>
-
-  <div class="p-2" style="font-size: 20px;">
-    <% @coffee.get_profile_image(400,400).each do |image| %>
-      <%= image_tag image %><br />
-    <% end %>
-    <br />
-    <%= @coffee.text %>
-  </div>
-
-  <div class="d-flex flex-row">
-    <i class="fa fa-comments"></i><%= @coffee.coffee_comments.count %>
-
-    <div class="favorite_buttons_<%= @coffee.id %>">
-      <%= render "public/favorites/favorite", coffee: @coffee %>
-    </div>
-  </div>
-
 </div>
 
-<div class="border border border-light p-2 rounded" style="background-color: #ffe9b3;">
+<%= render "public/coffees/coffee", coffee: @coffee %>
+
+<div class="coffee-comment shadow border border-light p-2 rounded mt-2" style="background-color: #FFFFF0;">
   <h4>コメント</h4>
-  <%= form_with model: @coffee_comment, url: public_coffee_coffee_comment_path(@coffee), method: :post, local: false do |f| %>
+  <%= form_with model: @coffee_comment, url: public_coffee_coffee_comment_path(@coffee), local:false, method: :post do |f| %>
     <div class="form-group">
       <%= f.text_area :comment, size: "40x1" %>
     </div>
-    <div class="form-group">
-      <%= f.label :images, "画像" %>
-      <%= f.file_field :images, accept: "image/*", multiple: true %>
-    </div>
+    <!--<div class="form-group">-->
+    <!--  <%#= f.label :images, "画像" %>-->
+    <!--  <%#= f.file_field :images, accept: "image/*", multiple: true %>-->
+    <!--</div>-->
     <%= f.submit '送信', class: "btn-sm btn-primary" %>
   <% end %>
 </div>
 
-<div class="border border border-light p-2 rounded" style="background-color: #e6d2a1; font-size: 20px;">
-  <div class="comments-area">
+<div class="comments-area">
+
     <%= render "public/coffee_comments/comment", comments: @comments %>
-  </div>
+
 </div>
 

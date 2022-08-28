@@ -1,10 +1,17 @@
 <% if end_users.exists? %>
   <% end_users.each do |end_user| %>
-    <%= image_tag end_user.get_profile_image(100,100) %>
-    <%= end_user.name %><br />
-    <%= end_user.introduction %><br />
-    フォロー数: <%= end_user.followings.count %>
-    フォロワー数: <%= end_user.followers.count %>
+  <div class="follow-list mb-2 border rounded shadow" style="background-color: #fffcf0;">
+    <div class="p-2 text-bottom" style="font-size: 20px;">
+      <%= link_to public_end_user_path(end_user) do %>
+        <%= image_tag end_user.get_profile_image(60,60), class: "rounded-circle" %>
+        <%= end_user.name %>
+      <% end %>
+    </div>
+    <div class="">
+        フォロー数: <%= end_user.followings.count %>
+        フォロワー数: <%= end_user.followers.count %>
+    </div>
+  </div>
   <% end %>
 <% else %>
   <p>ユーザーはいません</p>

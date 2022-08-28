@@ -1,19 +1,17 @@
 <% if @range == "ユーザー" %>
-  <h3>ユーザー検索一覧</h3>
+  <h3 class="search-user-headline">ユーザー検索一覧</h3>
   <% @end_users.each do |end_user| %>
-    <div class="mb-2 border rounded " style="background-color: #ead7a4;">
-      <div class="p-2" style="font-size: 20px;">
+      <div class="follow-list mb-2 border rounded shadow p-2" style="font-size: 20px; background-color: #fffcf0;">
         <%= link_to public_end_user_path(end_user) do %>
-          <%= image_tag end_user.get_profile_image(100,100), class: "rounded-circle" %>
+          <%= image_tag end_user.get_profile_image(60,60), class: "rounded-circle" %>
           <%= end_user.name %>
         <% end %>
       </div>
-      <div class="p-2" style="background-color: #e6a96c; font-size: 15px;">
-        <%= end_user.introduction %>
-      </div>
-    </div>
   <% end %>
 <% else %>
-  <h3>投稿検索一覧</h3>
-  <%= render "public/coffees/coffee", coffees: @coffees %>
+  <h3 class="search-coffee-headline">投稿検索一覧</h3>
+  <% @coffees.each do |coffee| %>
+    <%= render "public/coffees/coffee", coffee: coffee %>
+  <% end %>
+  <%= paginate @coffees %>
 <% end %>

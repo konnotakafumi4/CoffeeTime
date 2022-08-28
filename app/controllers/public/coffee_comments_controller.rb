@@ -8,11 +8,13 @@ class Public::CoffeeCommentsController < ApplicationController
     @comment.end_user_id = current_end_user.id
     if @comment.save
        @comments = @coffee.coffee_comments
-      #redirect_to request.referer
+       #redirect_to request.referer
+       render :create
     else
+      flash[:alret] = "コメントに失敗しました。コメントを入力してください。"
       @coffee_new = Coffee.new
       @comments = @coffee.coffee_comments
-      #redirect_to request.referer
+      render :create
     end
   end
 
@@ -21,7 +23,7 @@ class Public::CoffeeCommentsController < ApplicationController
     @comment = CoffeeComment.find(params[:id])
     @comment.destroy
     @comments = @comment.coffee.coffee_comments
-    #redirect_to request.referer
+    render :destroy
     #coffee_comment: @coffee_comment, coffee: @coffee, comments: @comments) %>");
   end
 

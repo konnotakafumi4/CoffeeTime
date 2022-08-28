@@ -1,4 +1,7 @@
-<h3>タイムライン</h3>
+<h3 class="time-line-headline">タイムライン</h3>
 <div class="">
-  <%= render "public/coffees/coffee", coffees: @coffees_all.each %>
+  <% @coffees_all.each do |coffee| %>
+    <%= render "public/coffees/coffee", coffee: coffee %>
+  <% end %>
+  <%= paginate @coffees_all %>
 </div>

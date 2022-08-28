@@ -1,4 +1,6 @@
-<h3>いいね一覧</h3>
+<h3 class="user-favorites-headline">いいね一覧</h3>
 <div class="">
-  <%= render "public/coffees/coffee", coffees: @favorite_coffees %>
+  <% @favorite_coffees.each do |favorite_coffees| %>
+    <%= render "public/coffees/coffee", coffee: favorite_coffees %>
+  <% end %>
 </div>

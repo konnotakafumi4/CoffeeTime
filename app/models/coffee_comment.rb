@@ -2,6 +2,8 @@ class CoffeeComment < ApplicationRecord
   belongs_to :end_user
   belongs_to :coffee
 
+  validates :comment, presence: true
+
   has_many_attached :images
 
   def get_comment_image(width, height)

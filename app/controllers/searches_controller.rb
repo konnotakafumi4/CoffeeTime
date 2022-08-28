@@ -8,7 +8,7 @@ class SearchesController < ApplicationController
     if @range == "ユーザー"
       @end_users = EndUser.looks(params[:word])
     else
-      @coffees = Coffee.looks(params[:word])
+      @coffees = Coffee.looks(params[:word]).page(params[:page]).per(10)
     end
   end
 end

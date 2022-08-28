@@ -1,13 +1,13 @@
 class Public::EndUsersController < ApplicationController
   before_action :authenticate_end_user!
-  before_action :ensure_correct_end_user, only: [:edit, :update, :favorites, :destroy]
+  before_action :ensure_correct_end_user, { only: [:edit, :update, :destroy] }
 
   def index
   end
 
   def show
     @end_user = EndUser.find(params[:id])
-    @coffees = @end_user.coffees
+    @coffees = @end_user.coffees.page(params[:page]).per(10)
   end
 
   def edit
@@ -15,9 +15,12 @@ class Public::EndUsersController < ApplicationController
   end
 
   def update
-    end_user = EndUser.find(params[:id])
-    end_user.update(end_user_params)
-    redirect_to public_end_user_path
+    @end_user = EndUser.find(params[:id])
+    if @end_user.update(end_user_params)
+      redirect_to public_end_user_path
+    else
+      render :edit
+    end
   end
 
   def favorites
@@ -37,5 +40,11 @@ class Public::EndUsersController < ApplicationController
 
   def end_user_params
     params.require(:end_user).permit(:name, :introduction, :end_user_image)
+  end
+
+  def ensure_correct_end_user
+    @end_user = EndUser.find(params[:id])
+    return unless @end_user.id != current_end_user.id
+    redirect_to public_end_user_path
   end
 end

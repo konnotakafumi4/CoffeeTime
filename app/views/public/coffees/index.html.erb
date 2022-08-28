@@ -1,4 +1,7 @@
-<h3>投稿一覧</h3>
+<h3 class="coffee-index-headline">投稿一覧</h3>
 <div class="test">
-  <%= render "public/coffees/coffee", coffees: @coffees %>
+  <% @coffees.each do |coffee| %>
+    <%= render "public/coffees/coffee", coffee: coffee %>
+  <% end %>
+  <%= paginate @coffees %>
 </div>

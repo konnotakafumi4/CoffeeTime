@@ -19,3 +19,129 @@
  background-position: center;
  background-size: cover;
 }
+
+.back {
+ background-color: rgba( 0, 0, 0, 0.5); /* 背景色を半透明の黒にする */
+}
+
+// 見出し調整
+.coffee-index-headline {
+ width: 53%;
+ text-align: center;
+ margin-top: 45px;
+}
+
+.time-line-headline {
+ width: 57%;
+ text-align: center;
+ margin-top: 45px;
+}
+
+.user-coffee-headline {
+ width: 53%;
+ text-align: center;
+ margin-top: 16px;
+}
+
+.coffee-new-headline {
+ width: 79%;
+ text-align: center;
+ margin-top: 45px;
+}
+
+.user-edit-headline {
+ width: 79%;
+ text-align: center;
+ margin-top: 45px;
+}
+
+.user-favorites-headline {
+ width: 55%;
+ text-align: center;
+ margin-top: 45px;
+}
+
+.follow {
+ width: 75%;
+ text-align: center;
+ margin-top: 45px;
+}
+
+.followers-headline {
+ width: 77%;
+ text-align: center;
+ margin-top: 45px;
+}
+
+.search-user-headline {
+ width: 80%;
+ text-align: center;
+ margin-top: 45px;
+}
+
+.search-coffee-headline {
+ width: 58%;
+ text-align: center;
+ margin-top: 45px;
+}
+
+.coffee-edit-headline {
+ margin-top: 45px;
+}
+
+
+
+// コンテンツ調整
+.coffee-image {
+ text-align: center;
+ gap: 8px;
+ margin: 0;
+}
+
+.coffee-list, .coffee-comment, .coffee-comment-list {
+ width: 44vw;
+ margin: 0 auto;
+}
+
+.user-edit {
+ width: 32vw;
+ margin: 0 auto;
+}
+
+.coffee-new {
+ width: 24vw;
+ margin: 0 auto;
+}
+
+.profile {
+ width: 76vw;
+ margin: 0 auto;
+}
+
+.follow-list {
+ width: 40%;
+ margin: auto;
+}
+
+.coffee-show {
+ width: 45vw;
+ margin: auto;
+}
+
+.image-wrapper-2 {
+ width: 49%;
+  & img{
+   width: 100%;
+  }
+}
+
+.image-wrapper-1 {
+ width: 100%;
+  & img{
+   width: 100%;
+  }
+}
+
+.red-heart {
+ color: red;
+}

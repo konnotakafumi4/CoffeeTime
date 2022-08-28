@@ -1,7 +1,7 @@
 <div class="coffee-comment-list shadow border border-light p-2 rounded" style="background-color: #FFFFF0; font-size: 20px;">
   <% comments.each do |comment| %>
-    <%= link_to public_end_user_path(comment.end_user) do %>
-      <div class="d-flex bd-highlight">
+    <%= link_to admin_end_user_path(comment.end_user) do %>
+      <div class="d-flex bd-highlight mb-2">
         <div class="">
           <% if comment.end_user.end_user_image.attached? %>
             <%= image_tag comment.end_user.get_profile_image(60,60), class: "rounded-circle" %>
@@ -11,9 +11,7 @@
           <%= comment.end_user.name %><br />
         </div>
         <div class="ml-auto p-2 bd-highlight">
-          <% if comment.end_user == current_end_user %>
-            <%= link_to "削除", public_coffee_comment_path(comment), method: :delete, remote: true, class: "btn btn-danger", data: {confirm: "削除しますか？"} %>
-          <% end %><br />
+          <%= link_to "削除", admin_coffee_comment_path(comment), method: :delete, remote: true, class: "btn btn-danger", data: { confilm: "コメントを削除します。本当に削除しますか？" } %><br />
         </div>
       </div>
     <% end %>

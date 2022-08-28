@@ -1,65 +1,41 @@
-<h1>ユーザー詳細</h1>
+<h3><%= @end_user.name %>さんのプロフィール</h3>
 
-  <!--<div class="change-btn text-right">-->
-    <%# if @end_user == current_end_user %>
-      <%#= link_to "編集", edit_public_end_user_path %>
-    <%# end %>
-    <%# unless @end_user == current_end_user %>
-      <%#if current_end_user.following?(@end_user) %>
-        <%#= link_to "フォロー外す", public_end_user_relationships_path(@end_user.id), method: :delete, remote: true %>
-      <%# else %>
-        <%#= link_to "フォローする", public_end_user_relationships_path(@end_user.id), method: :post, remote: true %>
-      <%# end %>
-    <%# end %>
-  <!--</div>-->
+<div class="text-right p-2">
+  <%= link_to "削除する", admin_end_user_path(@end_user), method: :delete, class: "btn btn-danger", data: { confirm: "本当に削除しますか？" } %>
+</div>
 
-<%= link_to "削除する", admin_end_user_path(@end_user), method: :delete, data: { confirm: "本当に削除しますか？" } %>
-
-<div class="information">
-  <div class="first-infoemation">
-    <%= image_tag @end_user.get_profile_image(100,100), class: "rounded-circle" %>
+<div class="profile shadow rounded" style="background-color: #fffcf0; font-size: 20px;">
+  <div class="p-2 border-bottom">
+    <% if @end_user.end_user_image.attached? %>
+      <%= image_tag @end_user.get_profile_image(60,60), class: "rounded-circle" %>
+    <% else %>
+      <%= image_tag 'no_image.jpg', size: "100", class: "rounded-circle" %>
+    <% end %>
     <%= @end_user.name %><br />
   </div>
-  <div class="introduction">
+
+  <div class="p-2 border-bottom" style="background-color: #fffcf0;">
     <%= @end_user.introduction %><br />
   </div>
-  <div class="follower-count">
-    <%= link_to public_end_user_followings_path(@end_user.id) do %>
-      フォロー<%= @end_user.followings.count %>
+
+  <div class="p-2 border-bottom">
+    <%= link_to admin_end_user_followings_path(@end_user.id) do %>
+      フォロー数：<%= @end_user.followings.count %>
     <% end %>
-    <%= link_to public_end_user_followers_path(@end_user.id)  do %>
-      フォロワー<%= @end_user.followers.count %>
+    <%= link_to admin_end_user_followers_path(@end_user.id)  do %>
+      フォロワー数：<%= @end_user.followers.count %>
     <% end %>
   </div>
-  <div class="favorite-list">
+
+  <div class="rounded-bottom p-2" style="background-color: #fffcf0;">
     <%= link_to "いいね一覧", favorites_admin_end_user_path(@end_user.id) %>
   </div>
 </div>
 
-<div class="end_user_coffee_list">
-  <% @coffees.each do |coffee| %>
-    <div class="coffee_list_box mb-2">
-      <%= link_to public_end_user_path(coffee.end_user) do %>
-        <%= image_tag coffee.end_user.get_profile_image(50,50), class: "rounded-circle" %>
-        <%= coffee.end_user.name %>
-      <% end %>
-      <br />
-      <%= link_to admin_coffee_path(coffee) do %>
-        <% coffee.get_profile_image(400,400).each do |image| %>
-          <%= image_tag image %><br />
-        <% end %>
-        <%= coffee.text %>
-      <% end %>
-
-      <div class="form-inline">
-        <%#= link_to public_coffee_path(coffee) do %>
-          <i class="fa fa-commenting-o"><%= coffee.coffee_comments.count %></i><%= coffee.coffee_comments.count %>
-        <%# end %>
-
-        <div class="favorite_buttons_<%= coffee.id %>">
-          <%#= render "admin/favorites/favorite", coffee: coffee %>
-        </div>
-      </div>
-    </div>
-  <% end %>
+<div class="p-2">
+  <h3><%= @end_user.name %>さんの投稿一覧</h3>
 </div>
+
+<% @coffees.each do |coffees| %>
+  <%= render "admin/coffees/coffee", coffee: coffees %>
+<% end %>
