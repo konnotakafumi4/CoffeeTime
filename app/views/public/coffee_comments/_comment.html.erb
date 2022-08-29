@@ -6,7 +6,7 @@
           <% if comment.end_user.end_user_image.attached? %>
             <%= image_tag comment.end_user.get_profile_image(60,60), class: "rounded-circle" %>
           <% else %>
-            <%= image_tag 'no_image.jpg', size: "100", class: "rounded-circle" %>
+            <%= image_tag 'no_image.jpg', size: "60", class: "rounded-circle" %>
           <% end %>
           <%= comment.end_user.name %><br />
         </div>
