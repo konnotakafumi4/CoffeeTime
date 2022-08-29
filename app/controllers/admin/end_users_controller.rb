@@ -24,7 +24,6 @@ class Admin::EndUsersController < ApplicationController
   def destroy
     @end_user = EndUser.find(params[:id])
     @end_user.destroy
-    flash[:notice] = 'ユーザーを削除しました。'
-    redirect_to :root #削除に成功すればrootページに戻る
+    redirect_to admin_end_users_path #削除に成功すればrootページに戻る
   end
 end
