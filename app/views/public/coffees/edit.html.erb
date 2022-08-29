@@ -3,11 +3,11 @@
 <%= form_with model: @coffee, url: public_coffee_path, method: :patch do |f| %>
   <div class="shadow mb-2 border rounded p-2" style="background-color: #fffcf0;">
     <div class="p-2">
-      <%= f.label :image, "image" %>
+      <%= f.label :image, "画像" %>
       <%= f.file_field :image, class: "form-control-file user_image", accept: 'image/*' %>
     </div>
     <div class="p-2">
-      <%= f.label :text, "text" %>
+      <%= f.label :text, "内容" %>
       <%= f.text_area :text, class: 'form-control' %>
     </div>
     <div class="p-2">
