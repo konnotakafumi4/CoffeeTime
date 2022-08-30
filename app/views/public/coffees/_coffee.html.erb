@@ -11,14 +11,14 @@
     </div>
 
     <div class="coffee-image row p-2" style="font-size: 20px;">
-          <% coffee.get_profile_image(600,500).each.with_index(1) do |image,index| %>
+          <% coffee.get_profile_image(600,500).each.with_index do |image,index| %>
             <% if coffee.get_profile_image(600,500).size > 1 %>
               <div class="image-wrapper-2">
             <% else %>
               <div class="image-wrapper-1">
             <% end %>
-            <%= image_tag image, data: {toggle: "modal", target: ".image-#{index}-modal-lg"} %><br>
-              <div class="modal fade image-<%= index %>-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+            <%= image_tag image, data: {toggle: "modal", target: ".image-#{index + coffee.id}-modal-lg"} %><br>
+              <div class="modal fade image-<%= index + coffee.id %>-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg">
                   <div class="modal-content">
                     <%= image_tag image %>
@@ -27,12 +27,12 @@
               </div>
             </div>
           <% end %>
-      <%= link_to public_coffee_path(coffee) do %>
-          <div class="text-left">
-            <%= coffee.text %><br />
-          </div>
-        </div>
-      <% end %>
+          <%= link_to public_coffee_path(coffee) do %>
+              <div class="text-left">
+                <%= coffee.text %><br />
+              </div>
+            </div>
+          <% end %>
 
     <div class="d-flex flex-row p-2 m-2">
       <%= link_to public_coffee_path(coffee) do %>
