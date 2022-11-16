@@ -1,4 +1,5 @@
 class Admin::CoffeeCommentsController < ApplicationController
+  before_action :authenticate_admin!
   
   def destroy
     @comment = CoffeeComment.find(params[:id])

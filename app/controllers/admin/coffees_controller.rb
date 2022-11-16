@@ -1,4 +1,6 @@
 class Admin::CoffeesController < ApplicationController
+  before_action :authenticate_admin!
+  
   def index
     @coffees = Coffee.all
   end
