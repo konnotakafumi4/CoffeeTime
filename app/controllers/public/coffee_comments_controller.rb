@@ -1,6 +1,7 @@
 class Public::CoffeeCommentsController < ApplicationController
   before_action :authenticate_end_user!
-  #before_action :ensure_correct_end_user
+  #検証ツールから削除対策
+  before_action :ensure_user, only: [:destroy]
 
   def create
     @coffee = Coffee.find(params[:coffee_id])
